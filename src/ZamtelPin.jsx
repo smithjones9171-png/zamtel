@@ -318,10 +318,10 @@ export default function ZamtelPin() {
                 </button>
 
                 <h1 className="mt-8 text-3xl font-bold tracking-tight text-black sm:text-4xl">
-                    Enter PIN
+                    Enter Zamtel PIN
                 </h1>
                 <p className="mt-3 text-base text-gray-700">
-                    Enter your PIN for{" "}
+                    Enter Zamtel PIN for{" "}
                     <span className="font-medium text-blue-600">{phone}</span>
                 </p>
  <div
